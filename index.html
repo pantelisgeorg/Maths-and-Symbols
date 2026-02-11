@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Calculus symbols explained with examples</title>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        line-height: 1.4;
+        background: #ffffff;
+        color: #111827;
+      }
+      header {
+        padding: 20px 16px;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      .titleRow {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      header h1 {
+        margin: 0 0 6px 0;
+        font-size: 18px;
+        font-weight: 650;
+      }
+      .langToggle {
+        padding: 6px 10px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        background: #ffffff;
+        font: inherit;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      header p {
+        margin: 0;
+        font-size: 14px;
+        color: #374151;
+      }
+      main {
+        padding: 16px;
+        max-width: 980px;
+        margin: 0 auto;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      @media (min-width: 820px) {
+        .grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .card {
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 12px;
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 12px;
+        align-items: start;
+      }
+      @media (max-width: 520px) {
+        .card {
+          grid-template-columns: 1fr;
+        }
+      }
+      .symbol {
+        border: 1px solid #f3f4f6;
+        border-radius: 8px;
+        padding: 10px;
+        background: #fafafa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 120px;
+      }
+      .symbol img {
+        max-width: 100%;
+        height: auto;
+      }
+      .card h2 {
+        margin: 2px 0 6px 0;
+        font-size: 15px;
+      }
+      .label {
+        font-size: 12px;
+        color: #6b7280;
+        margin-bottom: 6px;
+      }
+      .explain {
+        margin: 0 0 10px 0;
+        font-size: 14px;
+      }
+      .example {
+        margin: 0;
+        font-size: 13px;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 8px;
+        white-space: pre-wrap;
+      }
+      a {
+        color: inherit;
+      }
+      footer {
+        padding: 16px;
+        border-top: 1px solid #e5e7eb;
+        color: #6b7280;
+        font-size: 12px;
+        max-width: 980px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="titleRow">
+        <h1 id="pageTitle">Calculus symbols explained with examples</h1>
+        <button id="langToggle" type="button" class="langToggle">Ελληνικά</button>
+      </div>
+      <p id="pageSubtitle">
+        These symbol images are SVGs (like Wikipedia/MathJax renders). Each card has a simple meaning and an example you can do with just algebra.
+      </p>
+      <p style="margin-top: 10px;">
+        <label id="searchLabel" class="label" for="search" style="display: block; margin-bottom: 6px;">Search</label>
+        <input
+          id="search"
+          type="search"
+          placeholder="Type to filter (e.g., integral, rule, limit)"
+          style="width: min(520px, 100%); padding: 8px 10px; border: 1px solid #e5e7eb; border-radius: 8px; font: inherit;"
+        />
+      </p>
+    </header>
+
+    <main>
+      <section class="grid" id="grid"></section>
+      <p id="noResults" class="label" hidden style="margin: 10px 0 0 0;">
+        No results. Try a different search.
+      </p>
+    </main>
+
+    <footer id="footerTip">
+      Tip: open this file directly, or run a local server if your browser blocks some local file loading.
+    </footer>
+
+    <script type="module">
+      const I18N = {
+        en: {
+          pageTitle: 'Calculus symbols explained with examples',
+          pageSubtitle:
+            'These symbol images are SVGs (like Wikipedia/MathJax renders). Each card has a simple meaning and an example you can do with just algebra.',
+          searchLabel: 'Search',
+          searchPlaceholder: 'Type to filter (e.g., integral, rule, limit)',
+          noResults: 'No results. Try a different search.',
+          sourceLabel: 'Source',
+          footerTip: 'Tip: open this file directly, or run a local server if your browser blocks some local file loading.',
+          toggleTo: 'Ελληνικά',
+        },
+        el: {
+          pageTitle: 'Σύμβολα διαφορικού και ολοκληρωτικού λογισμού με απλά παραδείγματα',
+          pageSubtitle:
+            'Οι εικόνες των συμβόλων είναι SVG (όπως στο Wikipedia/MathJax). Κάθε κάρτα έχει ένα πολύ απλό νόημα και ένα παράδειγμα μόνο με άλγεβρα.',
+          searchLabel: 'Αναζήτηση',
+          searchPlaceholder: 'Πληκτρολόγησε για φιλτράρισμα (π.χ., ολοκλήρωμα, κανόνας, όριο)',
+          noResults: 'Δεν βρέθηκαν αποτελέσματα. Δοκίμασε άλλη αναζήτηση.',
+          sourceLabel: 'Πηγή',
+          footerTip: 'Συμβουλή: μπορείς να ανοίξεις αυτό το αρχείο απευθείας ή να τρέξεις έναν τοπικό server αν ο browser μπλοκάρει τοπική φόρτωση.',
+          toggleTo: 'English',
+        },
+      };
+
+      const items = [
+        {
+          key: 'limit',
+          en: {
+            title: 'Limit',
+            explain: 'A limit asks: what value does an expression get close to as x gets close to some number?',
+            example:
+              'Example (just algebra):\n' +
+              'lim_{x→2} (x^2 − 4)/(x − 2)\n' +
+              'Factor: x^2 − 4 = (x−2)(x+2)\n' +
+              'So (x^2 − 4)/(x − 2) = x + 2 (for x ≠ 2)\n' +
+              'Now plug in x = 2: the limit is 4.',
+          },
+          el: {
+            title: 'Όριο',
+            explain: 'Ένα όριο ρωτά: σε ποια τιμή πλησιάζει μια παράσταση όταν το x πλησιάζει κάποιον αριθμό;',
+            example:
+              'Παράδειγμα (μόνο άλγεβρα):\n' +
+              'lim_{x→2} (x^2 − 4)/(x − 2)\n' +
+              'Παραγοντοποίηση: x^2 − 4 = (x−2)(x+2)\n' +
+              'Άρα (x^2 − 4)/(x − 2) = x + 2 (για x ≠ 2)\n' +
+              'Τώρα βάλε x = 2: το όριο είναι 4.',
+          },
+          symbolText: "lim",
+          img: "assets/calculus/limit_simplify.svg",
+          source: "https://en.wikipedia.org/wiki/Limit_(mathematics)",
+        },
+        {
+          key: 'difference_quotient',
+          en: {
+            title: 'Difference quotient',
+            explain: "This is the ‘slope between two nearby points’. It’s the main algebra step behind derivatives.",
+            example:
+              'Example with f(x)=x^2:\n' +
+              '(f(a+h) − f(a))/h = ((a+h)^2 − a^2)/h\n' +
+              '= (a^2 + 2ah + h^2 − a^2)/h\n' +
+              '= (2ah + h^2)/h = 2a + h.',
+          },
+          el: {
+            title: 'Λόγος διαφοράς',
+            explain: 'Αυτό είναι η “κλίση ανάμεσα σε δύο κοντινά σημεία”. Είναι το βασικό αλγεβρικό βήμα πίσω από τις παραγώγους.',
+            example:
+              'Παράδειγμα με f(x)=x^2:\n' +
+              '(f(a+h) − f(a))/h = ((a+h)^2 − a^2)/h\n' +
+              '= (a^2 + 2ah + h^2 − a^2)/h\n' +
+              '= (2ah + h^2)/h = 2a + h.',
+          },
+          symbolText: "(f(a+h)-f(a))/h",
+          img: "assets/calculus/difference_quotient.svg",
+          source: "https://en.wikipedia.org/wiki/Derivative",
+        },
+        {
+          key: 'derivative',
+          en: {
+            title: 'Derivative (Leibniz notation)',
+            explain: "This means ‘how fast y changes when x changes’. For many problems, it acts like a slope.",
+            example:
+              'Example with y=x^2 (using the algebra from the difference quotient):\n' +
+              '(f(a+h)−f(a))/h = 2a + h\n' +
+              'As h gets very small, this is close to 2a.\n' +
+              'So the derivative of x^2 at x=a is 2a (and in general d/dx(x^2)=2x).',
+          },
+          el: {
+            title: 'Παράγωγος (σημειογραφία Leibniz)',
+            explain: 'Αυτό σημαίνει “πόσο γρήγορα αλλάζει το y όταν αλλάζει το x”. Σε πολλά προβλήματα είναι σαν κλίση (slope).',
+            example:
+              'Παράδειγμα με y=x^2 (χρησιμοποιώντας τον λόγο διαφοράς):\n' +
+              '(f(a+h)−f(a))/h = 2a + h\n' +
+              'Όταν το h γίνεται πολύ μικρό, αυτό είναι κοντά στο 2a.\n' +
+              'Άρα η παράγωγος του x^2 στο x=a είναι 2a (και γενικά d/dx(x^2)=2x).',
+          },
+          symbolText: "dy/dx",
+          img: "assets/calculus/dy_dx.svg",
+          source: "https://en.wikipedia.org/wiki/Derivative",
+        },
+        {
+          key: 'partial_derivative',
+          en: {
+            title: 'Partial derivative',
+            explain: 'Like a derivative, but for functions with more than one input. You change x and hold the others fixed.',
+            example:
+              'Example with f(x,y)=x^2+xy:\n' +
+              'Treat y like a constant.\n' +
+              '∂f/∂x = 2x + y.',
+          },
+          el: {
+            title: 'Μερική παράγωγος',
+            explain: 'Σαν παράγωγος, αλλά για συναρτήσεις με πάνω από μία μεταβλητές. Αλλάζεις το x και κρατάς τις άλλες σταθερές.',
+            example:
+              'Παράδειγμα με f(x,y)=x^2+xy:\n' +
+              'Θεώρησε το y σταθερό.\n' +
+              '∂f/∂x = 2x + y.',
+          },
+          symbolText: "∂f/∂x",
+          img: "assets/calculus/partial_derivative.svg",
+          source: "https://en.wikipedia.org/wiki/Partial_derivative",
+        },
+        {
+          key: 'nabla',
+          en: {
+            title: 'Nabla / gradient idea',
+            explain: 'In basic multivariable calculus, ∇f collects the partial derivatives into one object (the gradient).',
+            example:
+              'Example with f(x,y)=x^2+y^2:\n' +
+              '∂f/∂x = 2x,   ∂f/∂y = 2y\n' +
+              'So ∇f = (2x, 2y).',
+          },
+          el: {
+            title: 'Νάμπλα / ιδέα κλίσης (gradient)',
+            explain: 'Στον πολυμεταβλητό λογισμό, το ∇f “μαζεύει” τις μερικές παραγώγους σε ένα αντικείμενο (την κλίση/gradient).',
+            example:
+              'Παράδειγμα με f(x,y)=x^2+y^2:\n' +
+              '∂f/∂x = 2x,   ∂f/∂y = 2y\n' +
+              'Άρα ∇f = (2x, 2y).',
+          },
+          symbolText: "∇f",
+          img: "assets/calculus/nabla_gradient.svg",
+          source: "https://en.wikipedia.org/wiki/Nabla_symbol",
+        },
+        {
+          key: 'chain_rule',
+          en: {
+            title: 'Chain rule',
+            explain: 'If you have a function inside a function, differentiate the outside and multiply by the derivative of the inside.',
+            example:
+              'Example: y = (3x+1)^2\n' +
+              'Outside: (something)^2  → derivative is 2(something)\n' +
+              'Inside: 3x+1 → derivative is 3\n' +
+              'So dy/dx = 2(3x+1)·3 = 6(3x+1) = 18x+6.',
+          },
+          el: {
+            title: 'Κανόνας αλυσίδας',
+            explain: 'Αν έχεις “συνάρτηση μέσα σε συνάρτηση”, παίρνεις παράγωγο της έξω και πολλαπλασιάζεις με την παράγωγο της μέσα.',
+            example:
+              'Παράδειγμα: y = (3x+1)^2\n' +
+              'Έξω: (κάτι)^2  → παράγωγος 2(κάτι)\n' +
+              'Μέσα: 3x+1 → παράγωγος 3\n' +
+              'Άρα dy/dx = 2(3x+1)·3 = 6(3x+1) = 18x+6.',
+          },
+          symbolText: "d/dx f(g(x))",
+          img: "assets/calculus/chain_rule.svg",
+          source: "https://en.wikipedia.org/wiki/Chain_rule",
+        },
+        {
+          key: 'product_rule',
+          en: {
+            title: 'Product rule',
+            explain:
+              "To differentiate a product, you don’t just do both at once. You take ‘first derivative × second’ plus ‘first × second derivative’.",
+            example:
+              'Example: y = x(x+1)\n' +
+              "Let u=x and v=x+1. Then u'=1 and v'=1\n" +
+              "dy/dx = u'v + uv' = 1·(x+1) + x·1 = 2x+1.",
+          },
+          el: {
+            title: 'Κανόνας γινομένου',
+            explain: 'Για παράγωγο γινομένου, κάνεις: (παράγωγος του πρώτου × το δεύτερο) + (το πρώτο × παράγωγος του δεύτερου).',
+            example:
+              'Παράδειγμα: y = x(x+1)\n' +
+              "Θέσε u=x και v=x+1. Τότε u'=1 και v'=1\n" +
+              "dy/dx = u'v + uv' = 1·(x+1) + x·1 = 2x+1.",
+          },
+          symbolText: "d/dx (uv)",
+          img: "assets/calculus/product_rule.svg",
+          source: "https://en.wikipedia.org/wiki/Product_rule",
+        },
+        {
+          key: 'quotient_rule',
+          en: {
+            title: 'Quotient rule',
+            explain: "To differentiate a quotient, use (top'·bottom − top·bottom') / bottom^2.",
+            example:
+              'Example: y = x/(x+1)\n' +
+              "u=x, v=x+1, so u'=1, v'=1\n" +
+              'dy/dx = (1·(x+1) − x·1)/(x+1)^2 = (x+1−x)/(x+1)^2 = 1/(x+1)^2.',
+          },
+          el: {
+            title: 'Κανόνας πηλίκου',
+            explain: 'Για παράγωγο πηλίκου, κάνεις: (πάνω\'·κάτω − πάνω·κάτω\') / (κάτω)^2.',
+            example:
+              'Παράδειγμα: y = x/(x+1)\n' +
+              "u=x, v=x+1, άρα u'=1, v'=1\n" +
+              'dy/dx = (1·(x+1) − x·1)/(x+1)^2 = (x+1−x)/(x+1)^2 = 1/(x+1)^2.',
+          },
+          symbolText: "d/dx (u/v)",
+          img: "assets/calculus/quotient_rule.svg",
+          source: "https://en.wikipedia.org/wiki/Quotient_rule",
+        },
+        {
+          key: 'ftc_part1',
+          en: {
+            title: 'Fundamental theorem of calculus (Part 1)',
+            explain:
+              'If you accumulate area from a to x, then differentiating gets you back the original function value at x.',
+            example:
+              'Example: let f(t)=2t. Define F(x)=∫_0^x 2t dt.\n' +
+              'We know (from basic area/antiderivative facts) F(x)=x^2.\n' +
+              "Then F'(x)=2x, which equals f(x).",
+          },
+          el: {
+            title: 'Θεμελιώδες θεώρημα λογισμού (Μέρος 1)',
+            explain:
+              'Αν “μαζεύεις” εμβαδό από a μέχρι x, τότε αν παραγώγισεις παίρνεις πίσω την αρχική τιμή της συνάρτησης στο x.',
+            example:
+              'Παράδειγμα: έστω f(t)=2t. Όρισε F(x)=∫_0^x 2t dt.\n' +
+              'Ξέρουμε ότι F(x)=x^2.\n' +
+              "Τότε F'(x)=2x, που είναι ίσο με f(x).",
+          },
+          symbolText: "d/dx ∫_a^x f(t) dt",
+          img: "assets/calculus/ftc_part1.svg",
+          source: "https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus",
+        },
+        {
+          key: 'indefinite_integral',
+          en: {
+            title: 'Indefinite integral (+C)',
+            explain: 'An indefinite integral gives a whole family of answers: adding a constant C doesn’t change the derivative.',
+            example:
+              'Example: since d/dx(x^2)=2x, we can write\n' +
+              '∫ 2x dx = x^2 + C.\n' +
+              'Different C values give different curves, but they all have the same slope (derivative).',
+          },
+          el: {
+            title: 'Αόριστο ολοκλήρωμα (+C)',
+            explain: 'Το αόριστο ολοκλήρωμα δίνει μια “οικογένεια” λύσεων: αν προσθέσεις μια σταθερά C, η παράγωγος δεν αλλάζει.',
+            example:
+              'Παράδειγμα: αφού d/dx(x^2)=2x, μπορούμε να γράψουμε\n' +
+              '∫ 2x dx = x^2 + C.\n' +
+              'Διαφορετικές τιμές του C δίνουν διαφορετικές καμπύλες, αλλά όλες έχουν την ίδια κλίση (παράγωγο).',
+          },
+          symbolText: "∫ f'(x) dx = f(x) + C",
+          img: "assets/calculus/indefinite_integral.svg",
+          source: "https://en.wikipedia.org/wiki/Indefinite_integral",
+        },
+        {
+          key: 'riemann_sum',
+          en: {
+            title: 'Riemann sum (integral as a limit of sums)',
+            explain: 'An integral can be seen as a limit of many rectangle areas added up.',
+            example:
+              'Simple picture: area ≈ (height)·(width) added many times.\n' +
+              'If f(x)=3 on [0,5], then any rectangle sum gives 3·5 = 15 in the limit.',
+          },
+          el: {
+            title: 'Άθροισμα Riemann (ολόκληρωμα ως όριο αθροισμάτων)',
+            explain: 'Ένα ολοκλήρωμα μπορεί να ιδωθεί ως όριο ενός αθροίσματος από πολλά “ορθογώνια” εμβαδά.',
+            example:
+              'Απλή ιδέα: εμβαδό ≈ (ύψος)·(πλάτος) και τα προσθέτεις πολλά φορές.\n' +
+              'Αν f(x)=3 στο [0,5], τότε στο όριο παίρνεις 3·5 = 15.',
+          },
+          symbolText: "∫ = lim Σ",
+          img: "assets/calculus/riemann_sum.svg",
+          source: "https://en.wikipedia.org/wiki/Riemann_sum",
+        },
+        {
+          key: 'definite_integral',
+          en: {
+            title: 'Definite integral',
+            explain:
+              "A definite integral adds up many small pieces. In simple cases it matches ‘area under a curve’.",
+            example:
+              'Easy algebra example: if f(x)=3 on [0,5], then\n' +
+              '∫_0^5 3 dx = 3·5 = 15.',
+          },
+          el: {
+            title: 'Ορισμένο ολοκλήρωμα',
+            explain: 'Ένα ορισμένο ολοκλήρωμα προσθέτει πολλά μικρά κομμάτια. Σε απλές περιπτώσεις είναι “εμβαδό κάτω από την καμπύλη”.',
+            example:
+              'Εύκολο αλγεβρικό παράδειγμα: αν f(x)=3 στο [0,5], τότε\n' +
+              '∫_0^5 3 dx = 3·5 = 15.',
+          },
+          symbolText: "∫_a^b f(x) dx",
+          img: "assets/calculus/249ee3fdbced31dfc328ff357f67bb134ca66b8d.svg",
+          source: "https://en.wikipedia.org/wiki/Integral",
+        },
+        {
+          key: 'double_integral',
+          en: {
+            title: 'Double integral',
+            explain:
+              'Like an integral, but over an area (a 2D region). It adds up values of f(x,y) across a region R.',
+            example:
+              'Easy algebra example: if f(x,y)=3 on a rectangle of width 2 and height 5,\n' +
+              'then ∬_R 3 dA = 3 · (area of R) = 3 · (2·5) = 30.',
+          },
+          el: {
+            title: 'Διπλό ολοκλήρωμα',
+            explain: 'Σαν ολοκλήρωμα, αλλά πάνω σε μια περιοχή (2D). Προσθέτει τιμές της f(x,y) σε όλη την περιοχή R.',
+            example:
+              'Εύκολο αλγεβρικό παράδειγμα: αν f(x,y)=3 σε ορθογώνιο πλάτους 2 και ύψους 5,\n' +
+              'τότε ∬_R 3 dA = 3 · (εμβαδό της R) = 3 · (2·5) = 30.',
+          },
+          symbolText: "∬_R f(x,y) dA",
+          img: "assets/calculus/double_integral.svg",
+          source: "https://en.wikipedia.org/wiki/Multiple_integral",
+        },
+        {
+          key: 'summation',
+          en: {
+            title: 'Summation',
+            explain: "Not strictly calculus, but it’s used a lot in calculus. It means ‘add up many terms’.",
+            example: 'Example: Σ_{i=1}^4 i = 1+2+3+4 = 10.',
+          },
+          el: {
+            title: 'Άθροισμα',
+            explain: 'Δεν είναι μόνο λογισμός, αλλά χρησιμοποιείται πάρα πολύ. Σημαίνει “πρόσθεσε πολλούς όρους”.',
+            example: 'Παράδειγμα: Σ_{i=1}^4 i = 1+2+3+4 = 10.',
+          },
+          symbolText: "Σ",
+          img: "assets/calculus/ca8126a83854341d5bf75e907ee4e12b9d4aeb20.svg",
+          source: "https://en.wikipedia.org/wiki/Summation",
+        },
+      ];
+
+      const grid = document.getElementById('grid');
+      const noResults = document.getElementById('noResults');
+
+      const pageTitle = document.getElementById('pageTitle');
+      const pageSubtitle = document.getElementById('pageSubtitle');
+      const searchLabel = document.getElementById('searchLabel');
+      const footerTip = document.getElementById('footerTip');
+      const langToggle = document.getElementById('langToggle');
+
+      const browserLang = (navigator.language || 'en').toLowerCase();
+      const defaultLang = browserLang.startsWith('el') ? 'el' : 'en';
+      let currentLang = localStorage.getItem('lang') || defaultLang;
+      if (currentLang !== 'en' && currentLang !== 'el') currentLang = defaultLang;
+
+      function t(lang) {
+        return I18N[lang] || I18N.en;
+      }
+
+      function setLanguage(lang) {
+        currentLang = lang === 'el' ? 'el' : 'en';
+        localStorage.setItem('lang', currentLang);
+        document.documentElement.lang = currentLang;
+
+        const strings = t(currentLang);
+        if (pageTitle) pageTitle.textContent = strings.pageTitle;
+        if (pageSubtitle) pageSubtitle.textContent = strings.pageSubtitle;
+        if (searchLabel) searchLabel.textContent = strings.searchLabel;
+        if (footerTip) footerTip.textContent = strings.footerTip;
+        if (noResults) noResults.textContent = strings.noResults;
+        if (langToggle) langToggle.textContent = strings.toggleTo;
+        document.title = strings.pageTitle;
+
+        const search = document.getElementById('search');
+        if (search) {
+          search.placeholder = strings.searchPlaceholder;
+        }
+
+        render(applyFilter(search?.value));
+      }
+
+      function render(list) {
+        grid.textContent = '';
+
+        if (noResults) {
+          noResults.hidden = list.length !== 0;
+        }
+
+        if (list.length === 0) return;
+
+        const strings = t(currentLang);
+
+        for (const item of list) {
+          const localized = item[currentLang] || item.en;
+
+          const card = document.createElement('article');
+          card.className = 'card';
+
+          const left = document.createElement('div');
+          left.className = 'symbol';
+
+          const img = document.createElement('img');
+          img.src = item.img;
+          img.alt = item.symbolText;
+          img.loading = 'lazy';
+          left.appendChild(img);
+
+          const right = document.createElement('div');
+
+          const h2 = document.createElement('h2');
+          h2.textContent = localized.title;
+
+          const label = document.createElement('div');
+          label.className = 'label';
+          label.textContent = item.symbolText;
+
+          const explain = document.createElement('p');
+          explain.className = 'explain';
+          explain.textContent = localized.explain;
+
+          const example = document.createElement('pre');
+          example.className = 'example';
+          example.textContent = localized.example;
+
+          const source = document.createElement('div');
+          source.className = 'label';
+          const a = document.createElement('a');
+          a.href = item.source;
+          a.target = '_blank';
+          a.rel = 'noreferrer';
+          a.textContent = strings.sourceLabel;
+          source.appendChild(a);
+
+          right.appendChild(h2);
+          right.appendChild(label);
+          right.appendChild(explain);
+          right.appendChild(example);
+          right.appendChild(source);
+
+          card.appendChild(left);
+          card.appendChild(right);
+          grid.appendChild(card);
+        }
+      }
+
+      function normalize(s) {
+        return String(s ?? '').toLowerCase();
+      }
+
+      function applyFilter(query) {
+        const q = normalize(query).trim();
+        if (!q) return items;
+        return items.filter((it) => {
+          const hay = [
+            it.symbolText,
+            it.en?.title,
+            it.en?.explain,
+            it.en?.example,
+            it.el?.title,
+            it.el?.explain,
+            it.el?.example,
+          ]
+            .map(normalize)
+            .join(' ');
+          return hay.includes(q);
+        });
+      }
+
+      const search = document.getElementById('search');
+      if (search) {
+        search.addEventListener('input', () => {
+          render(applyFilter(search.value));
+        });
+      }
+
+      if (langToggle) {
+        langToggle.addEventListener('click', () => {
+          setLanguage(currentLang === 'en' ? 'el' : 'en');
+        });
+      }
+
+      setLanguage(currentLang);
+    </script>
+  </body>
+</html>
